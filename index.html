@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasyno - w.sadowski_</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #1e1e1e;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+        }
+        h1 {
+            font-size: 24px;
+        }
+        p {
+            font-size: 16px;
+            color: #bbbbbb;
+        }
+        .socials a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #fff;
+            background: #007bff;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .socials a:hover {
+            background: #0056b3;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #218838;
+        }
+        .slot-machine {
+            font-size: 50px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Cześć! Tu <span style="color:#007bff;">w.sadowski_</span></h1>
+        <p>Tworzę treści na TikToku i Instagramie. Chcesz się skontaktować?</p>
+        <div class="socials">
+            <a href="https://www.instagram.com/w.sadowski_" target="_blank">Instagram</a>
+            <a href="https://www.tiktok.com/@w.sadowski_" target="_blank">TikTok</a>
+            <a href="mailto:TWOJ_EMAIL">E-mail</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Zagraj w kasyno!</h2>
+        <p>Wpisz swój Instagram i e-mail, by zagrać.</p>
+        
+        <input type="text" id="insta" placeholder="Twój Instagram" required>
+        <input type="email" id="email" placeholder="Twój e-mail" required>
+        <button onclick="startGame()">Zagraj</button>
+
+        <div id="game" style="display:none;">
+            <div class="slot-machine" id="slots">❓❓❓</div>
+            <button onclick="spin()">Losuj</button>
+            <p id="result"></p>
+        </div>
+    </div>
+
+    <script>
+        function startGame() {
+            let insta = document.getElementById("insta").value.trim();
+            let email = document.getElementById("email").value.trim();
+            
+            if (insta === "" || email === "") {
+                alert("Podaj swój Instagram i e-mail!");
+                return;
+            }
+            
+            document.getElementById("game").style.display = "block";
+        }
+
+        function spin() {
+            let symbols = ["7", "🍒", "🔔", "🍋", "⭐"];
+            let slot1 = symbols[Math.floor(Math.random() * symbols.length)];
+            let slot2 = symbols[Math.floor(Math.random() * symbols.length)];
+            let slot3 = symbols[Math.floor(Math.random() * symbols.length)];
+
+            document.getElementById("slots").innerText = slot1 + slot2 + slot3;
+
+            if (slot1 === "7" && slot2 === "7" && slot3 === "7") {
+                document.getElementById("result").innerHTML = "🔥 WYGRAŁEŚ! Dostaniesz follow na Instagramie! 🔥";
+            } else {
+                document.getElementById("result").innerHTML = "😢 Nie tym razem! Spróbuj ponownie.";
+            }
+        }
+    </script>
+
+</body>
+</html>
