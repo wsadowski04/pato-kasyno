@@ -3,151 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>w.sadowski_ - Kasyno</title>
+    <title>Kasyno 777 - Zdobądź Tokeny</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
+        
         body {
             font-family: 'Press Start 2P', cursive;
+            background: #1b1b1b;
+            color: #fff;
             text-align: center;
-            background: #121212;
-            color: #ffffff;
             margin: 0;
             padding: 0;
         }
+
         .navbar {
-            background: #1e1e1e;
-            padding: 15px;
+            background: #333;
+            padding: 20px;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 30px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
+
         .navbar a {
-            color: white;
+            color: #ffcc00;
             text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            background: #ffcc00;
-        }
-        .navbar a:hover {
-            background: #ffaa00;
-        }
-        .container {
-            max-width: 500px;
-            margin: 50px auto;
-            padding: 20px;
-            background: #1e1e1e;
+            padding: 12px 25px;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
-            display: none;
+            background: #444;
+            font-size: 16px;
         }
-        .active {
-            display: block;
+
+        .navbar a:hover {
+            background: #ffcc00;
+            color: #333;
         }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background: #1e1e1e;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
         input, button {
-            width: 90%;
-            padding: 10px;
+            width: 80%;
+            padding: 12px;
             margin: 10px 0;
-            border-radius: 5px;
+            border-radius: 8px;
             border: none;
-            text-align: center;
+            font-size: 18px;
             font-family: 'Press Start 2P', cursive;
         }
+
         button {
             background: #28a745;
             color: white;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
+
         button:hover {
             background: #218838;
         }
+
         .slot-machine {
-            font-size: 50px;
+            font-size: 72px;
             margin: 20px 0;
+            padding: 10px 0;
+            border: 3px solid #ffcc00;
+            border-radius: 10px;
+            background: #1e1e1e;
         }
-        #tokenDisplay {
+
+        #tokenDisplay, #bonus {
             font-size: 18px;
-            margin-top: 10px;
+            margin-top: 15px;
         }
+
+        #bonus {
+            color: #FFD700;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        .game-buttons button {
+            width: 30%;
+            margin: 5px;
+            font-size: 18px;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .game-buttons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        #result {
+            margin-top: 15px;
+            font-size: 20px;
+            color: #ffcc00;
+        }
+
+        .header-text {
+            margin-bottom: 30px;
+            font-size: 24px;
+            color: #ffcc00;
+        }
+
     </style>
 </head>
 <body>
 
     <div class="navbar">
         <a href="#" onclick="showTab('home')">Strona Główna</a>
-        <a href="#" onclick="showTab('casino')">Kasyno</a>
+        <a href="#" onclick="showTab('casino')">Kasyno 777</a>
     </div>
 
     <!-- Strona Główna -->
-    <div id="home" class="container active">
-        <h1>Cześć! Tu <span style="color:#ffcc00;">w.sadowski_</span></h1>
-        <p>Tworzę treści na TikToku i Instagramie.</p>
-        <div>
-            <a href="https://www.instagram.com/w.sadowski_" target="_blank">Instagram</a>
-            <a href="https://www.tiktok.com/@w.sadowski_" target="_blank">TikTok</a>
-        </div>
-        <h2>Zdobądź Tokeny 🎟️</h2>
-        <p>Wejdź w link poniżej, aby zdobyć **60 tokenów**!</p>
-        <button onclick="getTokens()">Kliknij i zdobądź tokeny</button>
+    <div id="home" class="container">
+        <h1 class="header-text">Witaj w Kasynie 777!</h1>
+        <p>Zdobywaj tokeny przez obserwowanie mojego konta na Instagramie i graj w gry kasynowe!</p>
+        <button onclick="getTokens()">Zdobądź 1000 tokenów za obserwację na Instagramie</button>
         <p id="tokenDisplay">Twoje tokeny: 0</p>
     </div>
 
     <!-- Kasyno -->
-    <div id="casino" class="container">
-        <h2>Zagraj w kasyno!</h2>
-        <p>Każde zakręcenie kosztuje **3 tokeny**.</p>
-        <button onclick="spin()">Losuj 🎰</button>
+    <div id="casino" class="container" style="display:none;">
+        <h2 class="header-text">Maszyna 777</h2>
+        <p>Koszt: **0,5 do 100 tokenów** za jedno zakręcenie.</p>
+        <button onclick="spin()">Zakręć Maszyną</button>
         <div class="slot-machine" id="slots">❓❓❓</div>
         <p id="result"></p>
         <p id="bonus"></p>
         <p id="tokenDisplayCasino">Twoje tokeny: 0</p>
+
+        <div class="game-buttons">
+            <button onclick="spinForAmount(0.5)">Zagraj za 0,5 tokena</button>
+            <button onclick="spinForAmount(1)">Zagraj za 1 token</button>
+            <button onclick="spinForAmount(5)">Zagraj za 5 tokenów</button>
+            <button onclick="spinForAmount(10)">Zagraj za 10 tokenów</button>
+            <button onclick="spinForAmount(50)">Zagraj za 50 tokenów</button>
+            <button onclick="spinForAmount(100)">Zagraj za 100 tokenów</button>
+        </div>
     </div>
 
     <script>
         let tokens = 0;
 
+        // Funkcja przełączająca między stronami
         function showTab(tabName) {
             document.querySelectorAll('.container').forEach(div => {
-                div.classList.remove('active');
+                div.style.display = 'none';
             });
-            document.getElementById(tabName).classList.add('active');
+            document.getElementById(tabName).style.display = 'block';
             updateTokenDisplay();
         }
 
+        // Funkcja do zdobywania tokenów
         function getTokens() {
-            tokens += 60;
-            alert("Dostałeś 60 tokenów!");
+            // Zakładając, że użytkownik obserwuje Instagram
+            tokens += 1000;
+            alert("Dostałeś 1000 tokenów za obserwację na Instagramie!");
             updateTokenDisplay();
         }
 
+        // Funkcja do wyświetlania aktualnej ilości tokenów
         function updateTokenDisplay() {
             document.getElementById("tokenDisplay").innerText = "Twoje tokeny: " + tokens;
             document.getElementById("tokenDisplayCasino").innerText = "Twoje tokeny: " + tokens;
         }
 
+        // Funkcja do zakręcenia maszyną 777
         function spin() {
-            if (tokens < 3) {
+            if (tokens < 0.5) {
                 alert("Masz za mało tokenów!");
                 return;
             }
-            tokens -= 3;
 
             let symbols = ["7", "🍒", "🔔", "🍋", "⭐"];
             let slot1 = symbols[Math.floor(Math.random() * symbols.length)];
             let slot2 = symbols[Math.floor(Math.random() * symbols.length)];
             let slot3 = symbols[Math.floor(Math.random() * symbols.length)];
 
-            document.getElementById("slots").innerText = slot1 + slot2 + slot3;
+            document.getElementById("slots").innerText = slot1 + " " + slot2 + " " + slot3;
 
             let resultMessage = "😢 Nie tym razem!";
             let bonusMessage = "";
+            let bonusSpins = 0;
 
+            // Jeśli 3x "7" to wygrana
             if (slot1 === "7" && slot2 === "7" && slot3 === "7") {
-                resultMessage = "🔥 WYGRAŁEŚ! Dostaniesz follow na Instagramie! 🔥";
-            } else if ((slot1 === "7" && slot2 === "7") || (slot1 === "7" && slot3 === "7") || (slot2 === "7" && slot3 === "7")) {
-                let bonusSpins = Math.floor(Math.random() * 8) + 3;
-                tokens += bonusSpins * 3; 
+                resultMessage = "🔥 WYGRAŁEŚ! Gratulacje! 🔥";
+                tokens += 10;  // Dodajemy wygraną
+            }
+            // Jeśli 2x "7" to bonus
+            else if ((slot1 === "7" && slot2 === "7") || (slot1 === "7" && slot3 === "7") || (slot2 === "7" && slot3 === "7")) {
+                bonusSpins = Math.floor(Math.random() * 8) + 3;
                 bonusMessage = "🎉 BONUS! Otrzymałeś " + bonusSpins + " dodatkowych zakręceń!";
+                tokens += bonusSpins * 3;  // Dodajemy tokeny za bonusowe zakręcenia
+            }
+
+            document.getElementById("result").innerText = resultMessage;
+            document.getElementById("bonus").innerText = bonusMessage;
+            updateTokenDisplay();
+        }
+
+        // Funkcja zakupu zakręcenia za określoną liczbę tokenów
+        function spinForAmount(amount) {
+            if (tokens < amount) {
+                alert("Masz za mało tokenów!");
+                return;
+            }
+            tokens -= amount;
+            let symbols = ["7", "🍒", "🔔", "🍋", "⭐"];
+            let slot1 = symbols[Math.floor(Math.random() * symbols.length)];
+            let slot2 = symbols[Math.floor(Math.random() * symbols.length)];
+            let slot3 = symbols[Math.floor(Math.random() * symbols.length)];
+
+            document.getElementById("slots").innerText = slot1 + " " + slot2 + " " + slot3;
+
+            let resultMessage = "😢 Nie tym razem!";
+            let bonusMessage = "";
+            let bonusSpins = 0;
+
+            // Sprawdzanie wyników
+            if (slot1 === "7" && slot2 === "7" && slot3 === "7") {
+                resultMessage = "🔥 WYGRAŁEŚ! Gratulacje! 🔥";
+                tokens += 10;  // Dodajemy wygraną
+            } else if ((slot1 === "7" && slot2 === "7") || (slot1 === "7" && slot3 === "7") || (slot2 === "7" && slot3 === "7")) {
+                bonusSpins = Math.floor(Math.random() * 8) + 3;
+                bonusMessage = "🎉 BONUS! Otrzymałeś " + bonusSpins + " dodatkowych zakręceń!";
+                tokens += bonusSpins * 3;
             }
 
             document.getElementById("result").innerText = resultMessage;
